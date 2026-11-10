@@ -49,6 +49,7 @@ Estados: `BACKLOG → READY → IN_PROGRESS → REVIEW → QA → APPROVED → D
 
 ## Historial resumido
 
+- 2026-11-10 (noche): Registro libre apagado y direcciones permitidas puestas por Jorge en Supabase (verificado desde afuera). Fase 2 publicada en https://menu-digital-blue.vercel.app (panel en /admin). Pendiente: prueba guiada con la cuenta real, SMTP propio (Olvidé mi contraseña), primer negocio piloto con fotos reales, MFA para el admin (mejora futura), 4 avisos intencionales del Advisor.
 - 2026-11-10: Jorge creó su usuario (lord.fullstack@gmail.com, confirmado) en el proyecto nuevo y pidió explícitamente el rol de administrador; se insertó en public.administradores (id 377a70e7-…). Verificado con sesión simulada. Pendiente: P0 de Supabase (registro libre sigue abierto), variables en Vercel, subir a GitHub, prueba guiada.
 - 2026-11-10 (tarde): Jorge no pudo entrar a la cuenta de Supabase de bebidas (correo sin acceso). Se migró a la cuenta jgc.labsagentics: proyecto nuevo menu-digital (smiskzilpnvsbqwtmbwz), 4 migraciones aplicadas y pruebas de permisos 180/180 en la base nueva; dirección actualizada en código, CSP y docs. Pendiente: P0 en Supabase (cuenta nueva), crear admin, publicar.
 - 2026-11-10: Ronda de corrección (15 puntos) + re-prueba QA APPROVE. Jorge pidió push y despliegue y eligió repo público. Publicado en Vercel. Pendiente: fotos y datos reales de un negocio piloto; prueba en celular real; Fase 2 (panel con Supabase).
@@ -72,7 +73,7 @@ Estados: `BACKLOG → READY → IN_PROGRESS → REVIEW → QA → APPROVED → D
 | ADM-004 | Menú público por negocio leyendo de Supabase | frontend | APPROVED | 0 | Entregado 2026-11-10: 121 pruebas, rutas /<slug> probadas contra Supabase real (base vacía). Build completo pendiente de ADM-003. Incidente: el agente hizo git stash/pop unos segundos con ADM-003 activo; stash vacío, archivos del panel presentes, se avisó a ADM-003 para revisar |
 | ADM-005 | QA (incluye "dueño A no toca a dueño B") | qa | APPROVED | 1 | REQUEST_CHANGES 2026-11-10: ~110 comprobaciones con Supabase simulado; 1 MEDIO (aviso de sesión expirada desaparece), bajos de rutas en preview (no aplican en Vercel). SW activado en Chromium con CSP estricta. Corrección en ronda 1 de ADM-003 |
 | ADM-006 | Seguridad final | security | APPROVED | 0 | APPROVE 2026-11-10 condicionado a P0 de docs/CHECKLIST-SUPABASE.md. 0 críticos/altos. MEDIO aceptado: sin MFA en el panel. 4 BAJOS a corregir con la ronda de QA |
-| ADM-007 | Publicación | devops | ESPERA_JORGE | 0 | requiere visto bueno explícito |
+| ADM-007 | Publicación | devops | DEPLOYED | 0 | 2026-11-10: Jorge aprobó ("Sí, publica"). Variables VITE_SUPABASE_* en Vercel (Production), push de 4 commits, despliegue dpl_GFierpsp READY (commit 84330a0). Verificado en vivo: 200 en /, /admin, /<slug>, sw, manifest; CSP con la base nueva; /admin noindex; panel fuera del precache; consola limpia. Rollback: dpl_5yuYhByR (v1) |
 
 ## Esperando a Jorge (Fase 2)
 - Hacer los P0 de docs/CHECKLIST-SUPABASE.md (registro apagado, anónimos apagados, Site URL/Redirect, SMTP) y crear su usuario administrador.
