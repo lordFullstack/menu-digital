@@ -8,3 +8,4 @@ tmp-sub
 .playwright-mcp
 .env*
 .vercel
+!.env.example

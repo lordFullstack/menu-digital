@@ -51,3 +51,26 @@ Estados: `BACKLOG → READY → IN_PROGRESS → REVIEW → QA → APPROVED → D
 
 - 2026-11-10: Ronda de corrección (15 puntos) + re-prueba QA APPROVE. Jorge pidió push y despliegue y eligió repo público. Publicado en Vercel. Pendiente: fotos y datos reales de un negocio piloto; prueba en celular real; Fase 2 (panel con Supabase).
 - 2026-11-09: Jorge aprueba el diseño y el arranque de la versión estática. Se crea el repo `menu-digital` (aparte de `cuadrao`). Fase 2 (panel con Supabase) queda fuera de este encargo.
+
+---
+
+# Fase 2 — Panel de administración (encargo ENC-MENU-02)
+
+- **Aprobado por Jorge:** 2026-11-10 ("Sí, constrúyelo"), incluido crear el proyecto de Supabase a $0/mes.
+- **Modo:** Equipo · **Autonomía:** A1 · **Fase del método:** 5 Construir
+- **Supabase:** proyecto `menu-digital` (ref `euidxtsjtstukvrwcgwm`), creado 2026-11-10. El proyecto `bebidas-caribena` NO se toca.
+- **Contrato:** `docs/equipo/CONTRATO-ADMIN.md`
+
+| ID | Título | Dueño | Estado | Rondas | Nota |
+|---|---|---|---|---|---|
+| ADM-000 | Proyecto Supabase + contrato de datos y permisos | Coordinador | APPROVED | 0 | |
+| ADM-001 | Migraciones: tablas, RLS, funciones, storage | backend | IN_PROGRESS | 0 | Solo escribe archivos; las aplica el Coordinador tras ADM-002 |
+| ADM-002 | Seguridad revisa permisos antes de aplicar | security | BACKLOG | 0 | puede bloquear |
+| ADM-003 | Login y pantallas del panel `/admin` | frontend | BACKLOG | 0 | |
+| ADM-004 | Menú público por negocio leyendo de Supabase | frontend | BACKLOG | 0 | |
+| ADM-005 | QA (incluye "dueño A no toca a dueño B") | qa | BACKLOG | 0 | |
+| ADM-006 | Seguridad final | security | BACKLOG | 0 | |
+| ADM-007 | Publicación | devops | ESPERA_JORGE | 0 | requiere visto bueno explícito |
+
+## Esperando a Jorge (Fase 2)
+- Desactivar el registro público en el panel de Supabase (Authentication → Sign In / Providers) y crear su propio usuario administrador. Se le darán los pasos cuando las tablas estén aplicadas.
