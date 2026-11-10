@@ -60,3 +60,16 @@ export function mostrarError(raiz: HTMLElement, error: unknown, reintentar: () =
   pantalla.appendChild(caja);
   raiz.replaceChildren(pantalla);
 }
+
+/** Pantalla para rutas inválidas o menús que no existen / no están publicados (no se distingue a propósito). */
+export function mostrarNoEncontrado(raiz: HTMLElement): void {
+  document.title = 'Menú no encontrado';
+  const pantalla = el('main', 'estado-error');
+  const caja = el('div', 'estado-error-caja');
+  caja.appendChild(el('h1', 'estado-error-titulo', 'No encontramos este menú'));
+  caja.appendChild(
+    el('p', 'estado-error-texto', 'Revise que el enlace o el código QR esté completo, o pídale la carta al personal del local.'),
+  );
+  pantalla.appendChild(caja);
+  raiz.replaceChildren(pantalla);
+}

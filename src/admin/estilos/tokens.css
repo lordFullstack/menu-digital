@@ -1,0 +1,74 @@
+/* Tokens del panel. ÚNICO archivo del panel con valores de color literales.
+   El resto de los estilos usa solo estas variables. Escala 4/8 px y fuentes iguales a las del menú. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Color: claro */
+  --p-fondo: #f6f3ee;
+  --p-superficie: #ffffff;
+  --p-superficie-2: #efeae2;
+  --p-texto: #1f1b16;
+  --p-texto-suave: #5b5246;
+  --p-borde: #d9d0c3;
+  --p-acento: #9a3f24;
+  --p-sobre-acento: #ffffff;
+  --p-ok: #1d6a38;
+  --p-ok-fondo: #e2f1e6;
+  --p-error: #a3231b;
+  --p-error-fondo: #fbe7e4;
+  --p-info-fondo: #eaf0f7;
+  --p-info: #274e78;
+  --p-foco: #9a3f24;
+  --p-sombra: rgb(31 27 22 / 14%);
+  --p-velo: rgb(31 27 22 / 55%);
+
+  /* Espaciado, radios y ancho */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.25rem;
+  --e-6: 1.5rem;
+  --e-8: 2rem;
+  --e-10: 2.5rem;
+  --r-s: 0.5rem;
+  --r-m: 0.875rem;
+  --r-l: 1.25rem;
+  --r-pill: 999px;
+  --gutter: 1rem;
+  --ancho-panel: 60rem;
+  --alto-toque: 2.75rem;
+
+  /* Tipografía (la misma pareja "clásica" del menú) */
+  --p-f-titulos: 'Playfair Display Variable', Georgia, 'Times New Roman', serif;
+  --p-f-texto: 'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --p-fondo: #17140f;
+    --p-superficie: #221e18;
+    --p-superficie-2: #2d2820;
+    --p-texto: #f1ebe1;
+    --p-texto-suave: #b9ae9d;
+    --p-borde: #43392e;
+    --p-acento: #e58e6c;
+    --p-sobre-acento: #1a0f0a;
+    --p-ok: #7fd49a;
+    --p-ok-fondo: #173322;
+    --p-error: #ff9a8f;
+    --p-error-fondo: #3d1b17;
+    --p-info-fondo: #1a2735;
+    --p-info: #9fc3e8;
+    --p-foco: #e58e6c;
+    --p-sombra: rgb(0 0 0 / 40%);
+    --p-velo: rgb(0 0 0 / 65%);
+  }
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2rem;
+  }
+}

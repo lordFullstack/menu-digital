@@ -2,7 +2,7 @@
 // Devuelven TODOS los errores (en español, para el dueño del negocio) y un objeto NUEVO
 // con solo los campos conocidos (no pasan propiedades extra ni __proto__).
 import type { Categoria, Etiqueta, Franja, IdPlantilla, Menu, Negocio, ParTipografico, Plato, Tema } from './tipos';
-import { enlacePermitido, rutaLocalSegura } from './utilidades';
+import { enlacePermitido, fotoPermitida } from './utilidades';
 import type { TipoEnlace } from './utilidades';
 
 export const LIMITES = {
@@ -51,11 +51,11 @@ function textoOpcional(o: Registro, campo: string, max: number, donde: string, e
   return v;
 }
 
-/** Foto, logo o portada: solo ruta local (carpeta img del menú), nunca un enlace a otra página. */
+/** Foto, logo o portada: ruta local (carpeta img del menú) o foto del bucket del proyecto; nunca un enlace a otra página. */
 function fotoOpcional(o: Registro, campo: string, donde: string, errores: string[]): string | undefined {
   const v = o[campo];
   if (v === undefined) return undefined;
-  if (typeof v !== 'string' || rutaLocalSegura(v) === null) {
+  if (typeof v !== 'string' || fotoPermitida(v) === null) {
     errores.push(`${donde}: "${campo}" no es válida. Las fotos deben estar en la carpeta img del menú, no enlazadas desde otra página (ej. img/foto.svg).`);
     return undefined;
   }
@@ -250,7 +250,12 @@ function validarNegocio(x: unknown, errores: string[]): Negocio | undefined {
   return negocio;
 }
 
-export function validarMenu(x: unknown): { ok: true; menu: Menu } | { ok: false; errores: string[] } {
+export interface OpcionesMenu {
+  /** Un menú recién creado en la nube puede no tener categorías todavía: se muestra un estado vacío amable. */
+  permitirVacio?: boolean;
+}
+
+export function validarMenu(x: unknown, opciones: OpcionesMenu = {}): { ok: true; menu: Menu } | { ok: false; errores: string[] } {
   const errores: string[] = [];
   if (!esRegistro(x)) return { ok: false, errores: ['El archivo del menú no tiene el formato esperado (debe ser un objeto).'] };
   if (x.version !== 1) errores.push('El menú debe tener "version": 1.');
@@ -259,7 +264,7 @@ export function validarMenu(x: unknown): { ok: true; menu: Menu } | { ok: false;
   const categorias: Categoria[] = [];
   if (!Array.isArray(x.categorias)) {
     errores.push('El menú no tiene la lista de "categorias".');
-  } else if (x.categorias.length === 0) {
+  } else if (x.categorias.length === 0 && !opciones.permitirVacio) {
     errores.push('El menú necesita al menos una categoría.');
   } else if (x.categorias.length > LIMITES.categorias) {
     errores.push(`El menú tiene demasiadas categorías (máximo ${LIMITES.categorias}).`);

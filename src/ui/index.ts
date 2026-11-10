@@ -1,6 +1,7 @@
 // Interfaz del menú: monta las 6 pantallas a partir de menu.json + tema.json.
 import type { Menu, Plato, Tema } from '../datos';
 import { aplicarTema } from '../tema';
+import { crearAvisoCopia } from './aviso';
 import { activarBarra, crearBarra } from './barra';
 import { crearDetalle } from './detalle';
 import { el } from './dom';
@@ -8,7 +9,7 @@ import { crearPie } from './pie';
 import { crearPortada } from './portada';
 import { crearSeccion, crearVitrina } from './secciones';
 
-export { mostrarCarga, mostrarError } from './estados';
+export { mostrarCarga, mostrarError, mostrarNoEncontrado } from './estados';
 
 function actualizarColorNavegador(): void {
   const fondo = getComputedStyle(document.documentElement).getPropertyValue('--c-fondo').trim();
@@ -22,7 +23,7 @@ function actualizarColorNavegador(): void {
   meta.content = fondo;
 }
 
-export function montarApp(raiz: HTMLElement, datos: { menu: Menu; tema: Tema }): void {
+export function montarApp(raiz: HTMLElement, datos: { menu: Menu; tema: Tema; desdeCopia?: boolean }): void {
   const { menu, tema } = datos;
   const { negocio } = menu;
 
@@ -55,7 +56,7 @@ export function montarApp(raiz: HTMLElement, datos: { menu: Menu; tema: Tema }):
   });
   if (categorias.length === 0) {
     const vacio = el('div', 'contenedor');
-    vacio.appendChild(el('p', 'estado-vacio', 'El menú se está actualizando. Vuelva en unos minutos.'));
+    vacio.appendChild(el('p', 'estado-vacio', 'Este menú todavía no tiene platos.'));
     principal.appendChild(vacio);
   }
 
@@ -69,7 +70,9 @@ export function montarApp(raiz: HTMLElement, datos: { menu: Menu; tema: Tema }):
     principal.scrollIntoView({ block: 'start' });
   });
 
-  raiz.replaceChildren(saltar, portada);
+  raiz.replaceChildren(saltar);
+  if (datos.desdeCopia) raiz.appendChild(crearAvisoCopia());
+  raiz.appendChild(portada);
   if (items.length > 0) raiz.appendChild(barra);
   raiz.append(principal, crearPie(negocio), detalle.elemento);
   activarBarra(barra, items);

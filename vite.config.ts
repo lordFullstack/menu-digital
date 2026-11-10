@@ -1,6 +1,7 @@
 import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig, type Plugin } from 'vite';
 
 /** Recorre una carpeta y devuelve todas las rutas de archivo (absolutas). */
@@ -36,7 +37,9 @@ function precacheSW(): Plugin {
       // Si algún día se piden, el service worker las guarda al vuelo.
       // Solo se precargan los .woff2 del subconjunto "latin" (no latin-ext ni otros alfabetos).
       const esFuente = (f: string): boolean => /\.woff2?$/.test(f);
-      const lista = todos.filter((f) => !esFuente(f) || /-latin-wght-(normal|italic)-[^/]*\.woff2$/.test(f));
+      // El panel (/admin) no va al cascarón: los comensales no lo usan y el panel siempre va a la red.
+      const esPanel = (f: string): boolean => f === 'admin.html' || /^assets\/admin-[^/]*$/.test(f);
+      const lista = todos.filter((f) => !esPanel(f) && (!esFuente(f) || /-latin-wght-(normal|italic)-[^/]*\.woff2$/.test(f)));
       const hash = createHash('sha256');
       for (const f of lista) hash.update(f).update(readFileSync(join(salida, f)));
       const version = hash.digest('hex').slice(0, 12);
@@ -77,6 +80,16 @@ function cspDesarrollo(): Plugin {
 // base relativa: el menú funciona en la raíz de un dominio (Vercel) o en una subcarpeta, y en local.
 export default defineConfig({
   base: './',
-  build: { target: 'es2020', sourcemap: false },
+  build: {
+    target: 'es2020',
+    sourcemap: false,
+    // Dos entradas: el menú público (index.html) y el panel de administración (admin.html).
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        admin: fileURLToPath(new URL('./admin.html', import.meta.url)),
+      },
+    },
+  },
   plugins: [precacheSW(), cspDesarrollo()],
 });

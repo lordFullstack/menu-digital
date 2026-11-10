@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- CSP estricta de producción (la misma que index.html). En desarrollo, vite.config.ts la relaja (plugin "csp-desarrollo"). -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://euidxtsjtstukvrwcgwm.supabase.co; font-src 'self'; connect-src 'self' https://euidxtsjtstukvrwcgwm.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; upgrade-insecure-requests"
+    />
+    <meta name="referrer" content="no-referrer" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="./iconos/icono.svg" type="image/svg+xml" />
+    <title>Panel del menú</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <noscript>
+      <p>Para usar el panel necesitamos que JavaScript esté activado en su navegador. Actívelo y recargue la página.</p>
+    </noscript>
+    <script type="module" src="./src/admin/main.ts"></script>
+  </body>
+</html>

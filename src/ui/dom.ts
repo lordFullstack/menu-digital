@@ -1,5 +1,5 @@
 // Ayudas para construir el DOM con createElement y textContent (sin marcado de texto).
-import { rutaLocalSegura, urlSegura } from '../datos';
+import { fotoPermitida, urlSegura } from '../datos';
 
 export function el<K extends keyof HTMLElementTagNameMap>(
   etiqueta: K,
@@ -51,7 +51,7 @@ export function crearFallback(nombre: string): HTMLElement {
 }
 
 /**
- * Imagen segura: la ruta pasa por rutaLocalSegura() (solo fotos locales); si es inválida o la imagen falla,
+ * Imagen segura: la ruta pasa por fotoPermitida() (fotos locales o del bucket del proyecto); si es inválida o la imagen falla,
  * se reemplaza por un bloque de color con la inicial.
  */
 export function crearImagen(
@@ -62,7 +62,7 @@ export function crearImagen(
   alto: number,
   prioritaria = false,
 ): HTMLElement {
-  const url = rutaLocalSegura(ruta);
+  const url = fotoPermitida(ruta);
   if (!url) return crearFallback(nombre);
   const img = el('img', 'foto');
   img.addEventListener('error', () => img.replaceWith(crearFallback(nombre)), { once: true });

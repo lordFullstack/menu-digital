@@ -46,6 +46,28 @@ export function rutaLocalSegura(u: string | undefined): string | null {
   return segura;
 }
 
+/**
+ * Copia de PREFIJO_FOTOS (src/supabase/cliente.ts). Se repite aquí a propósito: importar cliente.ts desde
+ * la capa de datos metería todo supabase-js (~190 kB) en la carga del menú de muestra. Una prueba
+ * (negocio.test.ts) comprueba que ambas constantes sigan idénticas.
+ */
+export const PREFIJO_FOTOS_PERMITIDO = 'https://euidxtsjtstukvrwcgwm.supabase.co/storage/v1/object/public/fotos/';
+
+/**
+ * Foto permitida: ruta local segura O una URL que empieza EXACTAMENTE por PREFIJO_FOTOS (ver abajo)
+ * (el bucket público de fotos del proyecto). El resto del texto solo puede llevar letras, números,
+ * '.', '_', '-' y '/', sin '..', '//', '?' ni '#'. Cualquier otra https se rechaza.
+ */
+export function fotoPermitida(u: string | undefined): string | null {
+  const local = rutaLocalSegura(u);
+  if (local !== null) return local;
+  if (typeof u !== 'string' || u.length > 2000 || !u.startsWith(PREFIJO_FOTOS_PERMITIDO)) return null;
+  const resto = u.slice(PREFIJO_FOTOS_PERMITIDO.length);
+  if (resto.length === 0 || !/^[A-Za-z0-9._/-]+$/.test(resto)) return null;
+  if (resto.includes('..') || resto.includes('//') || resto.startsWith('/') || resto.endsWith('/')) return null;
+  return u;
+}
+
 export type TipoEnlace = 'instagram' | 'facebook' | 'tiktok' | 'mapa';
 
 /** Cada regla: dominio permitido y, opcionalmente, el comienzo obligatorio de la ruta. */

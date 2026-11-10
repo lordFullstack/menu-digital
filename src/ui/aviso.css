@@ -1,0 +1,10 @@
+/* Aviso discreto: "Mostrando la última versión guardada". Va arriba del menú y no tapa nada. */
+.aviso-copia {
+  margin: 0;
+  padding: var(--e-2) var(--gutter);
+  font-size: 0.875rem;
+  text-align: center;
+  background: var(--c-superficie, Canvas);
+  color: var(--c-sobre-fondo-suave, GrayText);
+  border-bottom: 1px solid var(--c-borde, currentColor);
+}

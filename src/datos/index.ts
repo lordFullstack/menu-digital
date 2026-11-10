@@ -1,5 +1,6 @@
 // Capa de datos del menú: tipos, validación, carga y utilidades seguras.
 import type { Menu, Tema } from './tipos';
+import { ErrorDeDatos } from './errores';
 import { validarMenu, validarTema } from './validar';
 
 export type {
@@ -7,15 +8,11 @@ export type {
 } from './tipos';
 export { validarMenu, validarTema } from './validar';
 export type { TipoEnlace } from './utilidades';
-export { estaAbierto, formatearPrecio, enlaceWhatsApp, urlSegura, rutaLocalSegura, enlacePermitido } from './utilidades';
+export { estaAbierto, formatearPrecio, enlaceWhatsApp, urlSegura, rutaLocalSegura, fotoPermitida, enlacePermitido } from './utilidades';
 
-/** Error de contenido (JSON mal escrito o con datos inválidos); los fallos de red usan Error normal. */
-export class ErrorDeDatos extends Error {
-  constructor(mensaje: string) {
-    super(mensaje);
-    this.name = 'ErrorDeDatos';
-  }
-}
+export { ErrorDeDatos } from './errores';
+export { rutaDePathname, slugValido, SLUGS_RESERVADOS } from './ruta';
+export type { RutaPublica } from './ruta';
 
 async function leerJson(ruta: string, nombre: string): Promise<unknown> {
   let respuesta: Response;

@@ -64,13 +64,15 @@ Estados: `BACKLOG → READY → IN_PROGRESS → REVIEW → QA → APPROVED → D
 | ID | Título | Dueño | Estado | Rondas | Nota |
 |---|---|---|---|---|---|
 | ADM-000 | Proyecto Supabase + contrato de datos y permisos | Coordinador | APPROVED | 0 | |
-| ADM-001 | Migraciones: tablas, RLS, funciones, storage | backend | IN_PROGRESS | 0 | Solo escribe archivos; las aplica el Coordinador tras ADM-002 |
-| ADM-002 | Seguridad revisa permisos antes de aplicar | security | BACKLOG | 0 | puede bloquear |
-| ADM-003 | Login y pantallas del panel `/admin` | frontend | BACKLOG | 0 | |
-| ADM-004 | Menú público por negocio leyendo de Supabase | frontend | BACKLOG | 0 | |
-| ADM-005 | QA (incluye "dueño A no toca a dueño B") | qa | BACKLOG | 0 | |
-| ADM-006 | Seguridad final | security | BACKLOG | 0 | |
+| ADM-001 | Migraciones: tablas, RLS, funciones, storage | backend | APPROVED | 1 | Aplicadas 2026-11-10 (4 migraciones). Pruebas de permisos en la base real: 180/180 (la 004 era un error del guion, corregida) |
+| ADM-002 | Seguridad revisa permisos antes de aplicar | security | APPROVED | 1 | REQUEST_CHANGES (0 críticos/altos) → corregido en ronda 1. Avisos del revisor de Supabase: 4 funciones definer ejecutables por usuarios con sesión, INTENCIONAL y probado |
+| ADM-003 | Login y pantallas del panel `/admin` | frontend | APPROVED | 1 | Ronda 1 (6 puntos QA+Seguridad) corregida 2026-11-10. Coordinador: tsc 0, 127 pruebas, build, greps limpios. Aviso de sesión expirada verificado en navegador por el implementador (401 simulado). Pantallas con sesión REAL sin probar: prueba guiada con Jorge |
+| ADM-004 | Menú público por negocio leyendo de Supabase | frontend | APPROVED | 0 | Entregado 2026-11-10: 121 pruebas, rutas /<slug> probadas contra Supabase real (base vacía). Build completo pendiente de ADM-003. Incidente: el agente hizo git stash/pop unos segundos con ADM-003 activo; stash vacío, archivos del panel presentes, se avisó a ADM-003 para revisar |
+| ADM-005 | QA (incluye "dueño A no toca a dueño B") | qa | APPROVED | 1 | REQUEST_CHANGES 2026-11-10: ~110 comprobaciones con Supabase simulado; 1 MEDIO (aviso de sesión expirada desaparece), bajos de rutas en preview (no aplican en Vercel). SW activado en Chromium con CSP estricta. Corrección en ronda 1 de ADM-003 |
+| ADM-006 | Seguridad final | security | APPROVED | 0 | APPROVE 2026-11-10 condicionado a P0 de docs/CHECKLIST-SUPABASE.md. 0 críticos/altos. MEDIO aceptado: sin MFA en el panel. 4 BAJOS a corregir con la ronda de QA |
 | ADM-007 | Publicación | devops | ESPERA_JORGE | 0 | requiere visto bueno explícito |
 
 ## Esperando a Jorge (Fase 2)
-- Desactivar el registro público en el panel de Supabase (Authentication → Sign In / Providers) y crear su propio usuario administrador. Se le darán los pasos cuando las tablas estén aplicadas.
+- Hacer los P0 de docs/CHECKLIST-SUPABASE.md (registro apagado, anónimos apagados, Site URL/Redirect, SMTP) y crear su usuario administrador.
+- Visto bueno para publicar (ADM-007): poner variables en Vercel y subir a GitHub (publica solo).
+- Prueba guiada del panel con su cuenta real.

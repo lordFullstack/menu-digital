@@ -122,6 +122,11 @@ self.addEventListener('fetch', (evento) => {
   // Otras apps del mismo origen (otras subcarpetas de GitHub Pages): no nos tocan.
   if (!url.href.startsWith(BASE)) return;
 
+  // El panel (/admin y /admin.html) siempre va a la red: ni se intercepta ni se guarda en caché.
+  if (peticion.mode === 'navigate' && (url.pathname === RUTA_BASE + 'admin' || url.pathname === RUTA_BASE + 'admin.html')) return;
+
+  // Navegación a /<slug> (menú de un negocio) o a la raíz: red primero y, sin señal, el index.html guardado
+  // (el mismo cascarón sirve para todos los menús; el slug lo lee el script al cargar).
   if (peticion.mode === 'navigate') {
     evento.respondWith(navegacion(peticion));
   } else if (url.href.startsWith(URL_DATOS) && url.pathname.endsWith('.json')) {
