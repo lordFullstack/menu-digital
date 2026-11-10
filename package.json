@@ -1,0 +1,30 @@
+{
+  "name": "menu-digital",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Menú digital con animaciones de scroll y tema 60-30-10 personalizable (PWA) — Synaptix AI Labs",
+  "scripts": {
+    "dev": "vite --host --port 5190",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host --port 5190",
+    "test": "vitest run",
+    "iconos": "node scripts/generar-iconos.mjs",
+    "qr": "node scripts/qr.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/fraunces": "5.3.0",
+    "@fontsource-variable/inter": "5.3.0",
+    "@fontsource-variable/nunito": "5.3.0",
+    "@fontsource-variable/playfair-display": "5.3.0",
+    "@fontsource-variable/sora": "5.3.0",
+    "gsap": "3.15.1"
+  },
+  "devDependencies": {
+    "qrcode": "1.5.4",
+    "sharp": "0.35.5",
+    "typescript": "7.0.2",
+    "vite": "8.3.7",
+    "vitest": "5.1.0"
+  }
+}

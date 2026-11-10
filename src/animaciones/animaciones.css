@@ -1,0 +1,18 @@
+/* MENU-004: reglas que SOLO se activan cuando index.ts añade la clase desde JS.
+   Sin JS (o con reduced-motion) la vitrina conserva su scroll nativo con snap. */
+
+.vitrina--fijada {
+  display: grid;
+  align-content: center;
+  min-height: calc(100vh - var(--alto-barra));
+  min-height: calc(100svh - var(--alto-barra));
+  /* El recorte va en la sección, que NO se mueve. Si se pone en la pista, el borde de
+     corte viaja con ella y mocha las tarjetas a mitad de pantalla.
+     'clip' no crea contenedor de scroll: el foco no desplaza nada a mano, solo el pin. */
+  overflow-x: clip;
+}
+
+.vitrina--fijada .vitrina-pista {
+  overflow: visible;
+  scroll-snap-type: none;
+}

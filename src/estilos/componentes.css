@@ -1,0 +1,583 @@
+/* Componentes: portada, barra de categorías, secciones, tarjetas, vitrina y pie. */
+
+/* ───────── 1. Portada ───────── */
+
+.portada {
+  --foco: var(--c-acento-en-superficie);
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-height: 88vh;
+  min-height: min(88svh, 60rem);
+  overflow: hidden;
+  background: var(--c-superficie);
+  color: var(--c-sobre-superficie);
+}
+
+.portada-foto {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.portada--sin-foto .portada-foto {
+  background:
+    radial-gradient(120% 80% at 85% 10%, color-mix(in srgb, var(--c-acento) 38%, transparent), transparent 60%),
+    var(--c-superficie-2);
+}
+
+.portada-velo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--c-superficie) 97%, transparent) 0%,
+    color-mix(in srgb, var(--c-superficie) 86%, transparent) 36%,
+    color-mix(in srgb, var(--c-superficie) 38%, transparent) 66%,
+    color-mix(in srgb, var(--c-superficie) 8%, transparent) 100%
+  );
+}
+
+.portada-contenido {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-4);
+  width: min(100%, var(--ancho));
+  margin-inline: auto;
+  padding: var(--e-16) var(--gutter) var(--e-10);
+}
+
+.logo {
+  width: 4.5rem;
+  height: 4.5rem;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--c-sobre-superficie) 45%, transparent);
+  background: var(--c-superficie-2);
+  box-shadow: var(--sombra-s);
+}
+
+.logo .foto-fallback-letra {
+  font-size: 1.75rem;
+}
+
+.insignia-estado {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-2);
+  padding: var(--e-1) var(--e-4) var(--e-1) var(--e-3);
+  border: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 24%, transparent);
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-sobre-superficie) 12%, transparent);
+  font-size: 0.875rem;
+  font-weight: 650;
+  line-height: 1.5;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.insignia-punto {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--c-sobre-superficie-suave);
+}
+
+.insignia-estado--abierto .insignia-punto {
+  background: var(--c-acento);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--c-acento) 30%, transparent);
+}
+
+.portada-titulo {
+  max-width: 14em;
+  font-family: var(--f-titulos);
+  font-size: clamp(2.25rem, 10vw, 4.75rem);
+  font-weight: 650;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.portada-eslogan {
+  max-width: 34rem;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.portada .boton {
+  margin-top: var(--e-2);
+  min-width: 11rem;
+}
+
+/* ───────── 2. Barra de categorías ───────── */
+
+.barra {
+  --foco: var(--c-acento-en-superficie);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--c-superficie);
+  color: var(--c-sobre-superficie);
+  border-bottom: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 14%, transparent);
+}
+
+.barra-lista {
+  display: flex;
+  gap: var(--e-2);
+  max-width: var(--ancho);
+  margin-inline: auto;
+  padding: var(--e-2) var(--gutter);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: none;
+}
+
+.barra-lista::-webkit-scrollbar {
+  display: none;
+}
+
+.pastilla {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--e-5);
+  border: 1px solid transparent;
+  border-radius: var(--r-pill);
+  color: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--t),
+    color var(--t);
+}
+
+.pastilla:hover {
+  background: color-mix(in srgb, var(--c-sobre-superficie) 10%, transparent);
+}
+
+.pastilla[aria-current='true'] {
+  background: var(--c-acento);
+  color: var(--c-sobre-acento);
+}
+
+/* ───────── 3. Secciones ───────── */
+
+.seccion {
+  padding-block: var(--e-10) var(--e-6);
+  scroll-margin-top: calc(var(--alto-barra) + var(--e-2));
+}
+
+.vitrina {
+  padding-block: var(--e-10);
+  background: var(--c-fondo-2);
+  scroll-margin-top: calc(var(--alto-barra) + var(--e-2));
+}
+
+.seccion-cabecera {
+  margin-bottom: var(--e-6);
+}
+
+.seccion-titulo {
+  font-family: var(--f-titulos);
+  font-size: clamp(1.75rem, 5.5vw, 2.5rem);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.seccion-titulo::after {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: var(--e-3);
+  border-radius: var(--r-pill);
+  background: var(--c-acento-en-fondo);
+}
+
+.seccion-apoyo {
+  margin-top: var(--e-3);
+  font-size: 0.9375rem;
+  color: var(--c-sobre-fondo-suave);
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--e-3);
+}
+
+@media (min-width: 768px) {
+  .seccion {
+    padding-block: var(--e-12) var(--e-8);
+  }
+
+  .rejilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e-5);
+  }
+}
+
+@media (min-width: 1100px) {
+  .rejilla {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--e-6);
+  }
+}
+
+/* ───────── Tarjeta de plato ───────── */
+
+.tarjeta {
+  --foco: var(--c-acento-en-superficie);
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 7.5rem;
+  grid-template-areas: 'texto foto';
+  align-items: start;
+  gap: var(--e-4);
+  height: 100%;
+  padding: var(--e-3) var(--e-3) var(--e-3) var(--e-4);
+  border-radius: var(--r-l);
+  background: var(--c-superficie);
+  color: var(--c-sobre-superficie);
+  box-shadow: var(--sombra-s);
+  transition:
+    transform var(--t),
+    box-shadow var(--t);
+}
+
+.tarjeta-cuerpo {
+  grid-area: texto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  min-width: 0;
+  height: 100%;
+  padding-block: var(--e-1);
+}
+
+.tarjeta-foto {
+  grid-area: foto;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: var(--r-m);
+  background: var(--c-superficie-2);
+}
+
+.tarjeta-nombre {
+  font-family: var(--f-titulos);
+  font-size: 1.0625rem;
+  font-weight: 650;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+.tarjeta-abrir {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* El botón cubre toda la tarjeta: se toca en cualquier parte, también sobre la foto.
+   z-index: queda por encima de la foto (position: relative) y del cuerpo; es transparente,
+   así que la insignia "Agotado" y la foto se siguen viendo. */
+.tarjeta-abrir::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: var(--r-l);
+}
+
+.tarjeta-abrir:focus-visible {
+  outline: none;
+}
+
+.tarjeta-abrir:focus-visible::after {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+}
+
+.tarjeta-descripcion {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--c-sobre-superficie-suave);
+}
+
+.tarjeta-precio {
+  margin-top: auto;
+  padding-top: var(--e-1);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-acento-en-superficie);
+}
+
+.etiquetas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-1) var(--e-2);
+}
+
+.etiqueta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--e-1);
+  padding: 0.125rem var(--e-2);
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-sobre-superficie) 13%, transparent);
+  color: var(--c-sobre-superficie);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.etiqueta .icono {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.etiqueta--nuevo {
+  background: var(--c-acento);
+  color: var(--c-sobre-acento);
+}
+
+.insignia-agotado {
+  position: absolute;
+  left: var(--e-2);
+  bottom: var(--e-2);
+  padding: 0.125rem var(--e-3);
+  border-radius: var(--r-pill);
+  background: var(--c-fondo);
+  color: var(--c-sobre-fondo);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.tarjeta--agotada .tarjeta-foto .foto {
+  filter: grayscale(1);
+  opacity: 0.55;
+}
+
+.tarjeta--agotada .tarjeta-nombre,
+.tarjeta--agotada .tarjeta-precio {
+  color: var(--c-sobre-superficie-suave);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .tarjeta:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-m);
+  }
+}
+
+.tarjeta:active {
+  transform: scale(0.99);
+}
+
+/* Tarjeta vertical: rejilla en pantallas anchas y vitrina siempre. */
+.tarjeta--vitrina {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'foto'
+    'texto';
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.tarjeta--vitrina .tarjeta-cuerpo {
+  padding: var(--e-4) var(--e-5) var(--e-5);
+}
+
+.tarjeta--vitrina .tarjeta-foto {
+  border-radius: 0;
+}
+
+.tarjeta--vitrina .tarjeta-nombre {
+  font-size: 1.1875rem;
+}
+
+.tarjeta--vitrina .tarjeta-descripcion {
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+@media (min-width: 768px) {
+  .tarjeta {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      'foto'
+      'texto';
+    gap: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .tarjeta-cuerpo {
+    padding: var(--e-4) var(--e-5) var(--e-5);
+  }
+
+  .tarjeta-foto {
+    border-radius: 0;
+  }
+
+  .tarjeta-nombre {
+    font-size: 1.1875rem;
+  }
+
+  .tarjeta-descripcion {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
+
+  .foto-fallback-letra {
+    font-size: 3rem;
+  }
+}
+
+/* ───────── 4. Vitrina de recomendados ───────── */
+
+.vitrina-pista {
+  display: flex;
+  gap: var(--e-4);
+  margin-inline: calc(var(--gutter) * -1);
+  padding: var(--e-1) var(--gutter) var(--e-4);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--c-sobre-fondo) 35%, transparent) transparent;
+}
+
+.vitrina-pista > li {
+  flex: 0 0 min(78%, 17.5rem);
+  scroll-snap-align: start;
+}
+
+/* ───────── 6. Pie ───────── */
+
+.pie {
+  --foco: var(--c-acento-en-superficie);
+  margin-top: var(--e-12);
+  padding-block: var(--e-12) var(--e-8);
+  background: var(--c-superficie);
+  color: var(--c-sobre-superficie);
+}
+
+.pie-nombre {
+  font-family: var(--f-titulos);
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 650;
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+.pie-titulo {
+  margin-top: var(--e-1);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--c-sobre-superficie-suave);
+}
+
+.pie-columnas {
+  display: grid;
+  gap: var(--e-8);
+  margin-top: var(--e-8);
+}
+
+.pie-bloque {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-4);
+}
+
+.pie-subtitulo {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-sobre-superficie-suave);
+}
+
+.pie-direccion {
+  max-width: 24rem;
+  line-height: 1.55;
+}
+
+.pie-redes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+
+.enlace-red {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 var(--e-4);
+  border: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 28%, transparent);
+  border-radius: var(--r-pill);
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color var(--t);
+}
+
+.enlace-red:hover {
+  background: color-mix(in srgb, var(--c-sobre-superficie) 10%, transparent);
+}
+
+.horario {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--e-2) var(--e-6);
+}
+
+.horario dt {
+  font-weight: 600;
+}
+
+.horario dd {
+  color: var(--c-sobre-superficie-suave);
+  font-variant-numeric: tabular-nums;
+}
+
+.firma {
+  margin-top: var(--e-10);
+  padding-top: var(--e-6);
+  border-top: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 16%, transparent);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--c-sobre-superficie-suave);
+  text-align: center;
+  text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+  .pie-columnas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--e-12);
+  }
+}

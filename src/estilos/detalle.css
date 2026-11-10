@@ -1,0 +1,260 @@
+/* 5. Detalle del plato: <dialog> modal. Panel inferior en móvil, diálogo centrado desde 768 px. */
+
+.detalle {
+  --foco: var(--c-acento-en-superficie);
+  position: fixed;
+  inset: auto 0 0 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: none;
+  max-height: 92vh;
+  max-height: 92svh;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+  background: var(--c-superficie);
+  color: var(--c-sobre-superficie);
+  box-shadow: var(--sombra-m);
+  transform: translateY(100%);
+  transition:
+    transform 280ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 200ms ease,
+    overlay 280ms allow-discrete,
+    display 280ms allow-discrete;
+}
+
+.detalle[open] {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+}
+
+@starting-style {
+  .detalle[open] {
+    transform: translateY(100%);
+  }
+}
+
+.detalle::backdrop {
+  background: color-mix(in srgb, var(--c-superficie, CanvasText) 66%, transparent);
+  opacity: 0;
+  transition:
+    opacity 240ms ease,
+    overlay 240ms allow-discrete,
+    display 240ms allow-discrete;
+}
+
+.detalle[open]::backdrop {
+  opacity: 1;
+}
+
+@starting-style {
+  .detalle[open]::backdrop {
+    opacity: 0;
+  }
+}
+
+/* Asa decorativa del panel inferior */
+.detalle::before {
+  content: '';
+  position: absolute;
+  top: var(--e-2);
+  left: 50%;
+  z-index: 3;
+  width: 2.5rem;
+  height: 0.25rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--c-sobre-superficie) 60%, transparent);
+  transform: translateX(-50%);
+}
+
+.detalle-cerrar {
+  position: absolute;
+  top: var(--e-3);
+  right: var(--e-3);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 24%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--c-superficie) 82%, transparent);
+  color: var(--c-sobre-superficie);
+  cursor: pointer;
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  transition:
+    background-color var(--t),
+    transform var(--t);
+}
+
+.detalle-cerrar:hover {
+  background: var(--c-superficie-2);
+}
+
+.detalle-cerrar:active {
+  transform: scale(0.94);
+}
+
+.detalle-cuerpo {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.detalle-foto {
+  aspect-ratio: 4 / 3;
+  max-height: 42vh;
+  max-height: 42svh;
+  width: 100%;
+  overflow: hidden;
+  background: var(--c-superficie-2);
+}
+
+.detalle-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--e-3);
+  padding: var(--e-5) var(--e-5) var(--e-6);
+}
+
+.detalle-categoria {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-sobre-superficie-suave);
+}
+
+.detalle-titulo {
+  font-family: var(--f-titulos);
+  font-size: clamp(1.625rem, 6vw, 2.125rem);
+  font-weight: 650;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.detalle-precio {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--c-acento-en-superficie);
+}
+
+.detalle-aviso {
+  padding: var(--e-2) var(--e-4);
+  border-radius: var(--r-m);
+  background: color-mix(in srgb, var(--c-sobre-superficie) 13%, transparent);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.detalle-descripcion {
+  max-width: 36rem;
+  line-height: 1.6;
+  color: var(--c-sobre-superficie-suave);
+  text-wrap: pretty;
+}
+
+.detalle-bloque {
+  display: flex;
+  flex-direction: column;
+  gap: var(--e-2);
+  width: 100%;
+  padding-top: var(--e-4);
+  border-top: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 14%, transparent);
+}
+
+.detalle-subtitulo {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--c-sobre-superficie-suave);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--e-2);
+}
+
+.chip {
+  padding: var(--e-1) var(--e-3);
+  border: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 24%, transparent);
+  border-radius: var(--r-pill);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.detalle-alergenos {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.detalle-accion {
+  flex: none;
+  padding: var(--e-4) var(--e-5) calc(var(--e-4) + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid color-mix(in srgb, var(--c-sobre-superficie) 14%, transparent);
+  background: var(--c-superficie);
+}
+
+.detalle-accion[hidden] {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .detalle {
+    inset: 0;
+    margin: auto;
+    width: min(42rem, calc(100% - 3rem));
+    height: fit-content;
+    max-height: min(52rem, calc(100vh - 3rem));
+    max-height: min(52rem, calc(100svh - 3rem));
+    border-radius: var(--r-xl);
+    opacity: 0;
+    transform: translateY(1rem) scale(0.97);
+  }
+
+  .detalle[open] {
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .detalle[open] {
+      opacity: 0;
+      transform: translateY(1rem) scale(0.97);
+    }
+  }
+
+  .detalle::before {
+    display: none;
+  }
+
+  .detalle-foto {
+    max-height: 40vh;
+    max-height: 40svh;
+  }
+
+  .detalle-info {
+    padding: var(--e-6) var(--e-8) var(--e-8);
+  }
+
+  .detalle-accion {
+    padding: var(--e-4) var(--e-8) var(--e-6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .detalle,
+  .detalle::backdrop {
+    transition: none;
+  }
+}

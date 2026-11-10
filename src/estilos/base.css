@@ -1,0 +1,351 @@
+/* Base: fichas de diseño (escala 4/8 px), reinicio, utilidades y estados de carga/error.
+   Los colores salen SOLO de las variables --c-* del tema. Los nombres de color del sistema
+   (Canvas, CanvasText) solo se usan como respaldo mientras el tema aún no está aplicado. */
+
+:root {
+  --ancho: 72rem;
+  --gutter: 1.25rem;
+
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.25rem;
+  --e-6: 1.5rem;
+  --e-8: 2rem;
+  --e-10: 2.5rem;
+  --e-12: 3rem;
+  --e-16: 4rem;
+
+  --r-s: 0.5rem;
+  --r-m: 0.875rem;
+  --r-l: 1.25rem;
+  --r-xl: 1.75rem;
+  --r-pill: 999px;
+
+  --sombra-s: 0 1px 2px color-mix(in srgb, var(--c-superficie) 24%, transparent);
+  --sombra-m:
+    0 2px 4px color-mix(in srgb, var(--c-superficie) 14%, transparent),
+    0 16px 32px -16px color-mix(in srgb, var(--c-superficie) 45%, transparent);
+
+  --alto-barra: 3.75rem;
+  --t: 160ms ease;
+  --foco: var(--c-acento-en-fondo, Highlight);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2rem;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scrollbar-gutter: stable;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+html.detalle-abierto,
+html.detalle-abierto body {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--c-fondo, Canvas);
+  color: var(--c-sobre-fondo, CanvasText);
+  font-family: var(--f-texto, system-ui, sans-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+dl,
+dd,
+address {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+address {
+  font-style: normal;
+}
+
+:focus-visible {
+  outline: 3px solid var(--foco);
+  outline-offset: 3px;
+  border-radius: var(--r-s);
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Enlace "Saltar al contenido": invisible hasta recibir foco con el teclado. */
+.saltar-contenido {
+  position: absolute;
+  inset-block-start: var(--e-2);
+  inset-inline-start: var(--e-2);
+  z-index: 200;
+  padding: var(--e-3) var(--e-4);
+  border-radius: var(--r-s);
+  background: var(--c-acento);
+  color: var(--c-sobre-acento);
+  font-weight: 650;
+  text-decoration: none;
+  transform: translateY(-300%);
+}
+
+.saltar-contenido:focus-visible {
+  transform: none;
+  outline: 3px solid var(--foco);
+  outline-offset: 2px;
+}
+
+.principal:focus {
+  outline: none;
+}
+
+.contenedor {
+  width: min(100%, var(--ancho));
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ───────── Imágenes y respaldo con inicial ───────── */
+
+.foto {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.foto-fallback {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  background: var(--c-superficie-2);
+  color: var(--c-acento-en-superficie);
+}
+
+.foto-fallback-letra {
+  font-family: var(--f-titulos);
+  font-size: 2.5rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* ───────── Botones ───────── */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--e-2);
+  min-height: 3rem;
+  padding: 0 var(--e-6);
+  border: 1.5px solid transparent;
+  border-radius: var(--r-pill);
+  background: var(--c-acento);
+  color: var(--c-sobre-acento);
+  font-weight: 650;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--t),
+    transform var(--t),
+    box-shadow var(--t);
+}
+
+.boton:hover {
+  background: color-mix(in srgb, var(--c-acento) 86%, var(--c-sobre-acento));
+}
+
+.boton:active {
+  transform: scale(0.98);
+}
+
+.boton--secundario {
+  background: transparent;
+  color: inherit;
+  border-color: color-mix(in srgb, currentColor 38%, transparent);
+}
+
+.boton--secundario:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.boton--completo {
+  width: 100%;
+}
+
+.icono {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex: none;
+}
+
+/* ───────── Carga (esqueleto sobrio) ───────── */
+
+.esqueleto {
+  min-height: 100vh;
+}
+
+.esqueleto-portada,
+.esqueleto-pastilla,
+.esqueleto-tarjeta {
+  background: color-mix(in srgb, currentColor 11%, transparent);
+}
+
+.esqueleto-portada {
+  height: 70vh;
+  height: 70svh;
+}
+
+.esqueleto-barra {
+  display: flex;
+  gap: var(--e-2);
+  padding: var(--e-2) var(--gutter);
+  border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.esqueleto-pastilla {
+  width: 6rem;
+  height: 2.75rem;
+  border-radius: var(--r-pill);
+}
+
+.esqueleto-cuerpo {
+  display: grid;
+  gap: var(--e-4);
+  width: min(100%, var(--ancho));
+  margin: var(--e-8) auto;
+  padding-inline: var(--gutter);
+}
+
+.esqueleto-tarjeta {
+  height: 7.5rem;
+  border-radius: var(--r-l);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .esqueleto-portada,
+  .esqueleto-pastilla,
+  .esqueleto-tarjeta {
+    animation: respirar 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes respirar {
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* ───────── Error y vacío ───────── */
+
+.estado-error {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: var(--e-6) var(--gutter);
+}
+
+.estado-error-caja {
+  display: grid;
+  justify-items: start;
+  gap: var(--e-4);
+  max-width: 28rem;
+}
+
+.estado-error-titulo {
+  font-family: var(--f-titulos, serif);
+  font-size: clamp(1.75rem, 6vw, 2.25rem);
+  line-height: 1.15;
+}
+
+.estado-error-texto {
+  color: var(--c-sobre-fondo-suave, GrayText);
+}
+
+.estado-error .boton {
+  background: var(--c-acento, LinkText);
+  color: var(--c-sobre-acento, Canvas);
+}
+
+.estado-error-detalle {
+  max-width: 100%;
+  font-size: 0.875rem;
+  color: var(--c-sobre-fondo-suave, GrayText);
+}
+
+.estado-error-detalle summary {
+  cursor: pointer;
+  min-height: 2.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.estado-error-detalle pre {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.estado-vacio {
+  padding-block: var(--e-16);
+  text-align: center;
+  color: var(--c-sobre-fondo-suave);
+}
+
+.sin-js {
+  max-width: 32rem;
+  margin: var(--e-12) auto;
+  padding-inline: var(--gutter);
+  font-family: system-ui, sans-serif;
+  line-height: 1.6;
+}

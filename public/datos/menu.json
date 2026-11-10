@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "negocio": {
+    "nombre": "Sabor de Muestra · Cocina Caribe",
+    "eslogan": "Negocio ficticio de ejemplo: cocina costeña con sazón de abuela",
+    "logo": "img/logo.svg",
+    "portada": "img/portada.svg",
+    "moneda": "COP",
+    "whatsapp": "573000000000",
+    "direccion": "Calle de Ejemplo #00-00, Barrio Imaginario, Costa Caribe",
+    "horario": [
+      { "dias": [1, 2, 3, 4], "abre": "11:00", "cierra": "22:00" },
+      { "dias": [5, 6], "abre": "11:00", "cierra": "02:00" },
+      { "dias": [0], "abre": "11:00", "cierra": "18:00" }
+    ]
+  },
+  "categorias": [
+    {
+      "id": "entradas",
+      "nombre": "Entradas",
+      "platos": [
+        {
+          "id": "empanadas-carne",
+          "nombre": "Empanadas de carne",
+          "descripcion": "Tres empanadas crocantes de maíz rellenas de carne guisada, con ají casero.",
+          "precio": 9500,
+          "foto": "img/entrada.svg",
+          "etiquetas": ["picante"],
+          "ingredientes": ["maíz", "carne de res", "papa", "cebolla"],
+          "alergenos": ["gluten"]
+        },
+        {
+          "id": "carimanolas",
+          "nombre": "Carimañolas",
+          "descripcion": "Masa suave de yuca rellena de queso costeño, doradas al momento.",
+          "precio": 10500,
+          "foto": "img/entrada.svg",
+          "etiquetas": ["vegetariano", "sin-gluten"],
+          "ingredientes": ["yuca", "queso costeño"],
+          "alergenos": ["lácteos"],
+          "recomendado": true
+        },
+        {
+          "id": "arepa-huevo",
+          "nombre": "Arepa de huevo",
+          "descripcion": "Arepa frita con un huevo cocido en su interior, crujiente por fuera.",
+          "precio": 6500,
+          "foto": "img/entrada.svg",
+          "etiquetas": ["vegetariano"],
+          "ingredientes": ["maíz", "huevo"],
+          "alergenos": ["huevo"]
+        },
+        {
+          "id": "patacones-hogao",
+          "nombre": "Patacones con hogao",
+          "descripcion": "Plátano verde aplastado y frito, con hogao de tomate y cebolla.",
+          "precio": 11000,
+          "foto": "img/entrada.svg",
+          "etiquetas": ["vegano", "sin-gluten"],
+          "ingredientes": ["plátano verde", "tomate", "cebolla larga"]
+        },
+        {
+          "id": "ensalada-aguacate",
+          "nombre": "Ensalada fresca de aguacate",
+          "descripcion": "Lechuga, tomate, pepino y aguacate con limón y un toque de cilantro.",
+          "precio": 14500,
+          "foto": "img/ensalada.svg",
+          "etiquetas": ["vegano", "sin-gluten", "nuevo"],
+          "ingredientes": ["aguacate", "tomate", "pepino", "lechuga", "limón"]
+        }
+      ]
+    },
+    {
+      "id": "fuertes",
+      "nombre": "Platos fuertes",
+      "platos": [
+        {
+          "id": "bandeja-costena",
+          "nombre": "Bandeja costeña",
+          "descripcion": "Carne asada, arroz de coco, frijoles, patacón y ensalada. Para quedar feliz.",
+          "precio": 32000,
+          "foto": "img/fuerte.svg",
+          "etiquetas": ["sin-gluten"],
+          "ingredientes": ["carne de res", "arroz con coco", "frijol", "plátano verde"],
+          "recomendado": true
+        },
+        {
+          "id": "pollo-guisado",
+          "nombre": "Pollo guisado",
+          "descripcion": "Presa de pollo en salsa criolla con arroz blanco, yuca y ensalada.",
+          "precio": 25000,
+          "foto": "img/fuerte.svg",
+          "etiquetas": ["sin-gluten"],
+          "ingredientes": ["pollo", "arroz", "yuca", "tomate", "pimentón"]
+        },
+        {
+          "id": "sancocho-trifasico",
+          "nombre": "Sancocho trifásico",
+          "descripcion": "Caldo espeso con res, cerdo y pollo, yuca, plátano y ñame. Se sirve con arroz.",
+          "precio": 28000,
+          "foto": "img/fuerte.svg",
+          "etiquetas": ["sin-gluten"],
+          "ingredientes": ["res", "cerdo", "pollo", "yuca", "ñame", "plátano"],
+          "recomendado": true
+        },
+        {
+          "id": "cazuela-frijoles",
+          "nombre": "Cazuela de frijoles",
+          "descripcion": "Frijoles cargamanto cocidos lento con plátano maduro y arroz de coco.",
+          "precio": 22000,
+          "foto": "img/fuerte.svg",
+          "etiquetas": ["vegetariano", "sin-gluten"],
+          "ingredientes": ["frijol cargamanto", "plátano maduro", "arroz con coco"]
+        },
+        {
+          "id": "arroz-con-pollo",
+          "nombre": "Arroz con pollo de la casa",
+          "descripcion": "Arroz sazonado con verduras, pollo desmechado y un toque de ají dulce.",
+          "precio": 24000,
+          "foto": "img/fuerte.svg",
+          "etiquetas": ["picante"],
+          "ingredientes": ["arroz", "pollo", "zanahoria", "arveja", "ají dulce"]
+        },
+        {
+          "id": "ensalada-tropical",
+          "nombre": "Ensalada tropical con pollo",
+          "descripcion": "Hojas verdes, mango, pollo a la plancha y vinagreta de maracuyá.",
+          "precio": 21000,
+          "foto": "img/ensalada.svg",
+          "etiquetas": ["sin-gluten", "nuevo"],
+          "ingredientes": ["pollo", "mango", "lechuga", "maracuyá"]
+        }
+      ]
+    },
+    {
+      "id": "mar",
+      "nombre": "Del mar",
+      "platos": [
+        {
+          "id": "mojarra-frita",
+          "nombre": "Mojarra frita",
+          "descripcion": "Mojarra entera frita, con arroz de coco, patacón y ensalada de la casa.",
+          "precio": 38000,
+          "foto": "img/mar.svg",
+          "etiquetas": ["sin-gluten"],
+          "ingredientes": ["mojarra", "arroz con coco", "plátano verde"],
+          "alergenos": ["pescado"],
+          "recomendado": true
+        },
+        {
+          "id": "cazuela-mariscos",
+          "nombre": "Cazuela de mariscos",
+          "descripcion": "Camarones, calamares y pescado en salsa cremosa de coco. Un abrazo del Caribe.",
+          "precio": 46000,
+          "foto": "img/mar.svg",
+          "etiquetas": ["sin-gluten"],
+          "ingredientes": ["camarón", "calamar", "pescado", "leche de coco"],
+          "alergenos": ["mariscos", "pescado"],
+          "agotado": true
+        },
+        {
+          "id": "ceviche-camaron",
+          "nombre": "Ceviche de camarón",
+          "descripcion": "Camarón curtido en limón con cebolla morada, cilantro y galletas saladas.",
+          "precio": 27000,
+          "foto": "img/mar.svg",
+          "etiquetas": ["picante"],
+          "ingredientes": ["camarón", "limón", "cebolla morada", "cilantro"],
+          "alergenos": ["mariscos", "gluten"]
+        },
+        {
+          "id": "arroz-marinero",
+          "nombre": "Arroz marinero",
+          "descripcion": "Arroz meloso con camarones, pescado y calamar, con sofrito de la casa.",
+          "precio": 36000,
+          "foto": "img/mar.svg",
+          "ingredientes": ["arroz", "camarón", "pescado", "calamar"],
+          "alergenos": ["mariscos", "pescado"]
+        },
+        {
+          "id": "filete-pescado",
+          "nombre": "Filete de pescado al ajillo",
+          "descripcion": "Filete a la plancha con ajo dorado, arroz blanco y verduras salteadas.",
+          "precio": 34000,
+          "foto": "img/mar.svg",
+          "etiquetas": ["sin-gluten"],
+          "ingredientes": ["pescado", "ajo", "arroz", "verduras"],
+          "alergenos": ["pescado"]
+        }
+      ]
+    },
+    {
+      "id": "postres",
+      "nombre": "Postres",
+      "platos": [
+        {
+          "id": "arroz-con-coco",
+          "nombre": "Arroz con coco dulce",
+          "descripcion": "Arroz con coco, pasas y panela, servido tibio. Dulce como la tarde costeña.",
+          "precio": 9000,
+          "foto": "img/postre.svg",
+          "etiquetas": ["vegano", "sin-gluten"],
+          "ingredientes": ["arroz", "coco", "panela", "pasas"]
+        },
+        {
+          "id": "cocadas",
+          "nombre": "Cocadas artesanales",
+          "descripcion": "Tres cocadas de coco rallado y azúcar, doradas y masticables.",
+          "precio": 7500,
+          "foto": "img/postre.svg",
+          "etiquetas": ["vegano", "sin-gluten"],
+          "ingredientes": ["coco", "azúcar"]
+        },
+        {
+          "id": "flan-coco",
+          "nombre": "Flan de coco",
+          "descripcion": "Flan cremoso con caramelo oscuro y un fino sabor a coco.",
+          "precio": 11000,
+          "foto": "img/postre.svg",
+          "etiquetas": ["vegetariano", "sin-gluten"],
+          "ingredientes": ["huevo", "leche", "coco", "azúcar"],
+          "alergenos": ["huevo", "lácteos"]
+        },
+        {
+          "id": "brownie-helado",
+          "nombre": "Brownie con helado",
+          "descripcion": "Brownie tibio de chocolate con una bola de helado de vainilla.",
+          "precio": 14000,
+          "foto": "img/postre.svg",
+          "etiquetas": ["vegetariano", "nuevo"],
+          "ingredientes": ["chocolate", "harina", "huevo", "helado de vainilla"],
+          "alergenos": ["gluten", "huevo", "lácteos", "frutos secos"]
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "nombre": "Bebidas",
+      "platos": [
+        {
+          "id": "limonada-coco",
+          "nombre": "Limonada de coco",
+          "descripcion": "Limón exprimido con crema de coco y hielo. La favorita de la casa.",
+          "precio": 9500,
+          "foto": "img/bebida.svg",
+          "etiquetas": ["vegano", "sin-gluten"],
+          "ingredientes": ["limón", "crema de coco", "hielo"],
+          "recomendado": true
+        },
+        {
+          "id": "jugo-maracuya",
+          "nombre": "Jugo de maracuyá",
+          "descripcion": "Natural, en agua o en leche, con la acidez justa.",
+          "precio": 7500,
+          "foto": "img/bebida.svg",
+          "etiquetas": ["vegano", "sin-gluten"],
+          "ingredientes": ["maracuyá", "azúcar"]
+        },
+        {
+          "id": "jugo-lulo",
+          "nombre": "Jugo de lulo",
+          "descripcion": "Lulo fresco, espeso y refrescante.",
+          "precio": 7500,
+          "foto": "img/bebida.svg",
+          "etiquetas": ["vegano", "sin-gluten"],
+          "ingredientes": ["lulo", "azúcar"]
+        },
+        {
+          "id": "avena-fria",
+          "nombre": "Avena fría con canela",
+          "descripcion": "Bebida cremosa de avena y leche con canela, bien helada.",
+          "precio": 6500,
+          "foto": "img/bebida.svg",
+          "etiquetas": ["vegetariano"],
+          "ingredientes": ["avena", "leche", "canela"],
+          "alergenos": ["gluten", "lácteos"]
+        },
+        {
+          "id": "cafe-tinto",
+          "nombre": "Café tinto",
+          "descripcion": "Café colombiano recién colado, para cerrar la comida.",
+          "precio": 3500,
+          "foto": "img/cafe.svg",
+          "etiquetas": ["vegano", "sin-gluten"],
+          "ingredientes": ["café"]
+        }
+      ]
+    }
+  ]
+}

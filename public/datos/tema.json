@@ -1,0 +1,6 @@
+{
+  "version": 1,
+  "plantilla": "cafeteria",
+  "colores": { "fondo": "#F5EFE6", "superficie": "#3B2A20", "acento": "#C8553D" },
+  "tipografia": "clasica"
+}
