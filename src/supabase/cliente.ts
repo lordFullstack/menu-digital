@@ -7,7 +7,7 @@ const URL_SUPABASE = import.meta.env.VITE_SUPABASE_URL as string | undefined;
 const CLAVE = import.meta.env.VITE_SUPABASE_CLAVE as string | undefined;
 
 /** Origen exacto del proyecto. Las fotos públicas solo se aceptan si empiezan por PREFIJO_FOTOS. */
-export const ORIGEN_SUPABASE = 'https://euidxtsjtstukvrwcgwm.supabase.co';
+export const ORIGEN_SUPABASE = 'https://smiskzilpnvsbqwtmbwz.supabase.co';
 export const PREFIJO_FOTOS = `${ORIGEN_SUPABASE}/storage/v1/object/public/fotos/`;
 
 /** true si la app se compiló con la conexión configurada (en local: archivo .env; en Vercel: variables). */

@@ -28,7 +28,7 @@ y desactivar **"Allow anonymous sign-ins"**. Así solo Jorge crea usuarios.
 
 Cómo comprobar que quedó desactivado (no deja datos si falla; usa la clave publicable, que es pública):
 ```
-curl -s -X POST "https://euidxtsjtstukvrwcgwm.supabase.co/auth/v1/signup" \
+curl -s -X POST "https://smiskzilpnvsbqwtmbwz.supabase.co/auth/v1/signup" \
   -H "apikey: <CLAVE_PUBLICABLE>" -H "Content-Type: application/json" \
   -d '{"email":"prueba-registro@ejemplo.invalid","password":"Cambiar-Esto-123!"}'
 ```

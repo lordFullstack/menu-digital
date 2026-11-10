@@ -51,7 +51,7 @@ export function rutaLocalSegura(u: string | undefined): string | null {
  * la capa de datos metería todo supabase-js (~190 kB) en la carga del menú de muestra. Una prueba
  * (negocio.test.ts) comprueba que ambas constantes sigan idénticas.
  */
-export const PREFIJO_FOTOS_PERMITIDO = 'https://euidxtsjtstukvrwcgwm.supabase.co/storage/v1/object/public/fotos/';
+export const PREFIJO_FOTOS_PERMITIDO = 'https://smiskzilpnvsbqwtmbwz.supabase.co/storage/v1/object/public/fotos/';
 
 /**
  * Foto permitida: ruta local segura O una URL que empieza EXACTAMENTE por PREFIJO_FOTOS (ver abajo)

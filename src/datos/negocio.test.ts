@@ -74,12 +74,12 @@ describe('fotoPermitida', () => {
       PREFIJO_FOTOS + RUTA + ' ',
       PREFIJO_FOTOS + RUTA + '\n',
       PREFIJO_FOTOS.replace('/public/fotos/', '/public/otro/') + RUTA,
-      PREFIJO_FOTOS.replace('euidxtsjtstukvrwcgwm', 'otroproyecto') + RUTA,
+      PREFIJO_FOTOS.replace('smiskzilpnvsbqwtmbwz', 'otroproyecto') + RUTA,
       PREFIJO_FOTOS.replace('https://', 'http://') + RUTA,
       PREFIJO_FOTOS.replace('.supabase.co', '.supabase.co.evil.com') + RUTA,
-      'https://euidxtsjtstukvrwcgwm.supabase.co@evil.com/storage/v1/object/public/fotos/' + RUTA,
+      'https://smiskzilpnvsbqwtmbwz.supabase.co@evil.com/storage/v1/object/public/fotos/' + RUTA,
       'https://example.com/a.png',
-      '//euidxtsjtstukvrwcgwm.supabase.co/storage/v1/object/public/fotos/' + RUTA,
+      '//smiskzilpnvsbqwtmbwz.supabase.co/storage/v1/object/public/fotos/' + RUTA,
       'javascript:alert(1)',
     ];
     for (const m of malas) expect(fotoPermitida(m), m).toBeNull();

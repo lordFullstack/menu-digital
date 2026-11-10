@@ -15,7 +15,7 @@
   - **No** pongas `https://*.vercel.app`: dejaría que la página de cualquier otro usuario de Vercel reciba tu enlace de recuperar contraseña.
 - [ ] **Correo propio para "Olvidé mi contraseña".** *Authentication* → *Emails* → *SMTP Settings*: conecta un servicio de correo (Resend, Brevo…). Sin esto, el correo de Supabase solo llega a miembros de tu equipo y con muy pocos envíos por hora.
 - [ ] **Variables en Vercel.** (Esto lo puedo hacer yo con tu visto bueno.) Vercel → proyecto *menu-digital* → *Settings* → *Environment Variables*, para Production:
-  - `VITE_SUPABASE_URL` = `https://euidxtsjtstukvrwcgwm.supabase.co`
+  - `VITE_SUPABASE_URL` = `https://smiskzilpnvsbqwtmbwz.supabase.co`
   - `VITE_SUPABASE_CLAVE` = la clave **publicable** (`sb_publishable_…`). **Nunca** la `service_role` / secreta.
 
 ## P1 — El mismo día

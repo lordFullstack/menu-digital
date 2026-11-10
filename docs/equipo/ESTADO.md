@@ -49,6 +49,7 @@ Estados: `BACKLOG → READY → IN_PROGRESS → REVIEW → QA → APPROVED → D
 
 ## Historial resumido
 
+- 2026-11-10 (tarde): Jorge no pudo entrar a la cuenta de Supabase de bebidas (correo sin acceso). Se migró a la cuenta jgc.labsagentics: proyecto nuevo menu-digital (smiskzilpnvsbqwtmbwz), 4 migraciones aplicadas y pruebas de permisos 180/180 en la base nueva; dirección actualizada en código, CSP y docs. Pendiente: P0 en Supabase (cuenta nueva), crear admin, publicar.
 - 2026-11-10: Ronda de corrección (15 puntos) + re-prueba QA APPROVE. Jorge pidió push y despliegue y eligió repo público. Publicado en Vercel. Pendiente: fotos y datos reales de un negocio piloto; prueba en celular real; Fase 2 (panel con Supabase).
 - 2026-11-09: Jorge aprueba el diseño y el arranque de la versión estática. Se crea el repo `menu-digital` (aparte de `cuadrao`). Fase 2 (panel con Supabase) queda fuera de este encargo.
 

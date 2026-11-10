@@ -14,7 +14,7 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://euidxtsjtstukvrwcgwm.supabase.co; font-src 'self'; connect-src 'self' https://euidxtsjtstukvrwcgwm.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+          "value": "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' https://smiskzilpnvsbqwtmbwz.supabase.co; font-src 'self'; connect-src 'self' https://smiskzilpnvsbqwtmbwz.supabase.co; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
         },
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Referrer-Policy", "value": "no-referrer" },
